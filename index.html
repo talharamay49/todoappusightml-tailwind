@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            colors: {
+              clifford: "#da373d",
+            },
+          },
+        },
+      };
+    </script>
+    <style type="text/tailwindcss">
+      @layer utilities {
+        .content-auto {
+          content-visibility: auto;
+        }
+      }
+    </style>
+    <title>Todo App</title>
+  </head>
+  <body>
+    <div>
+      <div
+        class="h-screen overflow-hidden flex items-center justify-center bg-red-500"
+      >
+        <div class="h-100 w-full flex items-center justify-center font-sans">
+          <div class="bg-white rounded shadow-lg p-6 m-4 w-full lg:w-1/2">
+            <!-- Headder  -->
+            <div class="mb-8">
+              <h1 class="text-grey-darlest text-3xl">Todo List</h1>
+              <div class="flex mt-4 gap-5">
+                <input
+                  id="newTask"
+                  type="text"
+                  name="myTask"
+                  placeholder="My Task"
+                  class="px-4 shadow appearance-none border rounded w-full py-2 text-grey-darlest"
+                />
+                <button
+                  id="push"
+                  type=""
+                  class="p-2 border-2 text-teal-700 border-teal-500 hover:text-white hover:bg-teal-700 rounded"
+                >
+                  Add
+                </button>
+              </div>
+            </div>
+            <!-- Headder  -->
+            <!-- list  -->
+            <div id="tasks"></div>
+            <!-- list  -->
+          </div>
+        </div>
+      </div>
+    </div>
+    <script>
+      document.querySelector("#push").onclick = function () {
+        if (document.querySelector("#newTask").value.length == 0) {
+          alert("Please enter A task");
+        } else {
+          document.querySelector("#tasks").innerHTML +=
+            '<div class="task flex mb-4 items-center px-3 py-1 border border-amber cursor-pointer rounded bg-green-50"> <span  class="mr-4 font-bold text-sm">1.</span><p id="taskname" class="w-full text-grey-darkest px-1 capitalize">buy milk</p><button class="delete flex-no-shrink px-2 py-1 ml-1 mr-2 rounded border-2 border-red-400 hover:text-white hover:bg-red-300">Delete</button></div>';
+        }
+        count++;
+      };
+      var currentTask = document.querySelectorAll('.delete');
+      for (var i = 0; i <currentTask.length; i++) {
+        currentTask[i].onclick = function () {
+            alert('deleted')
+          this.parentNode.remove();
+        };
+      }
+      var tasks = document.querySelectorAll("#taskname");
+      for (var i = 0; i < tasks.length; i++) {
+        tasks[i].onclick = function () {
+            alert('completed')
+          this.classList.toggle("completed");
+        };
+      }
+    </script>
+  </body>
+</html>
